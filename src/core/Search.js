@@ -14,11 +14,11 @@ const Search = () => {
     const { categories, category, search, results, searched } = data;
 
     const loadCategories = () => {
-        getCategories().then(data => {
-            if (data.error) {
-                console.log(data.error);
+        getCategories().then(catdata => {
+            if (data.caterror) {
+                console.log(catdata.error);
             } else {
-                setData({ ...data, categories: data });
+                setData({ ...data, categories: catdata });
             }
         });
     };
@@ -69,7 +69,9 @@ const Search = () => {
                 </h2>
                 <div className="row">
                     {results.map((product, i) => (
+                        <div className="col-4 mb-3">
                         <Card key={i} product={product} />
+                        </div>
                     ))}
                 </div>
             </div>

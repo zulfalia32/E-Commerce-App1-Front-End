@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
-import { signin, authenticate, isAuthenticated } from "../auth/index";
-
+import { signin, authenticate, isAuthenticated } from "../auth/index.js";
 
 const Signin = () => {
     const [values, setValues] = useState({
         email: "test@test.com",
-        password: "test1234",
+        password: "password",
         error: "",
         loading: false,
         redirectToReferrer: false
     });
 
     const { email, password, loading, error, redirectToReferrer } = values;
-    const {user} = isAuthenticated()
-
+    const { user } = isAuthenticated();
+  
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value });
     };
@@ -24,18 +23,18 @@ const Signin = () => {
         event.preventDefault();
         setValues({ ...values, error: false, loading: true });
         signin({ email, password }).then(data => {
-            if (data.error) {
-                setValues({ ...values, error: data.error, loading: false });
+            console.log('data is = ', data)
+            console.log('data.error is = ', data.error)
+            console.log('data.err is = ', data.err)
+            if (data.err||data.error) {
+                setValues({ ...values, error: data.err||data.error, loading: false });
             } else {
-                authenticate(data, ()=>{
-                        setValues({
-                            ...values,
-                            redirectToReferrer: true
-                        });
-
-                    }
-                )
-    
+                authenticate(data, () => {
+                    setValues({
+                        ...values,
+                        redirectToReferrer: true
+                    });
+                });
             }
         });
     };
@@ -85,14 +84,14 @@ const Signin = () => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-            if(user && user.role===1){
-                return <Redirect to="admin/dashboard"/>;
-            }else{
-                return <Redirect to="user/dashboard"/>;
+            if (user && user.role === 1) {
+                return <Redirect to="/admin/dashboard" />;
+            } else {
+                return <Redirect to="/user/dashboard" />;
             }
         }
-        if(isAuthenticated()){
-            return <Redirect to="/" />
+        if (isAuthenticated()) {
+            return <Redirect to="/" />;
         }
     };
 

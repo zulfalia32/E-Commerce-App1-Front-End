@@ -37,6 +37,7 @@ const Orders = () => {
     }, []);
 
     const showOrdersLength = () => {
+        console.log('orders.length= ', orders.length)
         if (orders.length > 0) {
             return (
                 <h1 className="text-danger display-2">
@@ -127,7 +128,7 @@ const Orders = () => {
                                         Amount: ${o.amount}
                                     </li>
                                     <li className="list-group-item">
-                                        Ordered by: {o.user.name}
+                                        Ordered by: {o.name}
                                     </li>
                                     <li className="list-group-item">
                                         Ordered on:{" "}

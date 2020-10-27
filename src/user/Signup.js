@@ -46,7 +46,7 @@ const Signup = () =>{
 
         <form>
             <div className="form-group">
-                <label className="test-muted">Name</label>
+                <label className="text-muted">Name</label>
                 <input
                      onChange={handleChange('name')}
                       type="text" 
@@ -56,7 +56,7 @@ const Signup = () =>{
             </div>
 
             <div className="form-group">
-                <label className="test-muted">Email</label>
+                <label className="text-muted">Email</label>
                 <input
                      onChange={handleChange('email')}
                      type="email" 
@@ -66,7 +66,7 @@ const Signup = () =>{
             </div>
 
             <div className="form-group">
-                <label className="test-muted">Password</label>
+                <label className="text-muted">Password</label>
                 <input
                      onChange={handleChange('password')}
                      type="password" 
@@ -79,13 +79,13 @@ const Signup = () =>{
     )
 
     const showError=()=>(
-        <div className="slert alert-danger" style={{display:error? '':'none'}} >
+        <div className="alert alert-danger" style={{display:error? '':'none'}} >
             {error}
         </div>
     )
 
     const showSuccess=()=>(
-        <div className="slert alert-info" style={{display:success? '':'none'}} >
+        <div className="alert alert-info" style={{display:success? '':'none'}} >
             New account is created. Please <Link to="/signin">Signin</Link>
         </div>
     )
